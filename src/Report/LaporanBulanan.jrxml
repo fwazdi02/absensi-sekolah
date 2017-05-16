@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanBulanan" language="groovy" pageWidth="612" pageHeight="792" columnWidth="542" leftMargin="35" rightMargin="35" topMargin="40" bottomMargin="35">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="17"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="DSAbsensiSiswa">
+		<parameter name="BulanP1" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     absensisiswa.`id` AS absensisiswa_id,
+     absensisiswa.`NISS` AS absensisiswa_NISS,
+     absensisiswa.`Nama` AS absensisiswa_Nama,
+     absensisiswa.`KelJur` AS absensisiswa_KelJur,
+     absensisiswa.`keterangan` AS absensisiswa_keterangan,
+     absensisiswa.`Tanggal` AS absensisiswa_Tanggal
+FROM
+     `absensisiswa` absensisiswa
+WHERE
+	MONTH(Tanggal) = $P{BulanP1}]]>
+		</queryString>
+		<field name="absensisiswa_id" class="java.lang.Integer"/>
+		<field name="absensisiswa_NISS" class="java.lang.String"/>
+		<field name="absensisiswa_Nama" class="java.lang.String"/>
+		<field name="absensisiswa_KelJur" class="java.lang.String"/>
+		<field name="absensisiswa_keterangan" class="java.lang.String"/>
+		<field name="absensisiswa_Tanggal" class="java.sql.Date"/>
+		<variable name="KelasJurusaan" class="java.lang.String"/>
+	</subDataset>
+	<subDataset name="DataAbsensiGuru">
+		<parameter name="BulanP2" class="java.lang.Integer">
+			<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+		</parameter>
+		<queryString>
+			<![CDATA[SELECT
+     absensistaff.`id` AS absensistaff_id,
+     absensistaff.`NIGS` AS absensistaff_NIGS,
+     absensistaff.`Nama` AS absensistaff_Nama,
+     absensistaff.`Jabatan` AS absensistaff_Jabatan,
+     absensistaff.`keterangan` AS absensistaff_keterangan,
+     absensistaff.`Tanggal` AS absensistaff_Tanggal
+FROM
+     `absensistaff` absensistaff
+WHERE
+	MONTH (Tanggal) = $P{BulanP2}]]>
+		</queryString>
+		<field name="absensistaff_id" class="java.lang.Integer"/>
+		<field name="absensistaff_NIGS" class="java.lang.String"/>
+		<field name="absensistaff_Nama" class="java.lang.String"/>
+		<field name="absensistaff_Jabatan" class="java.lang.String"/>
+		<field name="absensistaff_keterangan" class="java.lang.String"/>
+		<field name="absensistaff_Tanggal" class="java.sql.Date"/>
+	</subDataset>
+	<parameter name="intBulanMP" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     absensisiswa.`Nama` AS absensisiswa_Nama,
+     absensisiswa.`KelJur` AS absensisiswa_KelJur,
+     absensisiswa.`keterangan` AS absensisiswa_keterangan,
+     absensisiswa.`Tanggal` AS absensisiswa_Tanggal,
+     absensisiswa.`NISS` AS absensisiswa_NISS,
+     absensisiswa.`id` AS absensisiswa_id,
+
+     absensistaff.`id` AS absensistaff_id,
+     absensistaff.`NIGS` AS absensistaff_NIGS,
+     absensistaff.`Nama` AS absensistaff_Nama,
+     absensistaff.`Jabatan` AS absensistaff_Jabatan,
+     absensistaff.`keterangan` AS absensistaff_keterangan,
+     absensistaff.`Tanggal` AS absensistaff_Tanggal
+
+
+FROM
+     `absensisiswa` absensisiswa,
+     `absensistaff` absensistaff]]>
+	</queryString>
+	<field name="absensisiswa_Nama" class="java.lang.String"/>
+	<field name="absensisiswa_KelJur" class="java.lang.String"/>
+	<field name="absensisiswa_keterangan" class="java.lang.String"/>
+	<field name="absensisiswa_Tanggal" class="java.sql.Date"/>
+	<field name="absensisiswa_NISS" class="java.lang.String"/>
+	<field name="absensisiswa_id" class="java.lang.Integer"/>
+	<field name="absensistaff_id" class="java.lang.Integer"/>
+	<field name="absensistaff_NIGS" class="java.lang.String"/>
+	<field name="absensistaff_Nama" class="java.lang.String"/>
+	<field name="absensistaff_Jabatan" class="java.lang.String"/>
+	<field name="absensistaff_keterangan" class="java.lang.String"/>
+	<field name="absensistaff_Tanggal" class="java.sql.Date"/>
+	<variable name="absensisiswa_Tanggal_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{absensisiswa_Tanggal}]]></variableExpression>
+	</variable>
+	<variable name="NmBulan" class="java.lang.String"/>
+	<group name="absensisiswa_Nama">
+		<groupExpression><![CDATA[$F{absensisiswa_Nama}]]></groupExpression>
+	</group>
+	<group name="absensisiswa_KelJur">
+		<groupExpression><![CDATA[$F{absensisiswa_KelJur}]]></groupExpression>
+	</group>
+	<group name="absensisiswa_keterangan">
+		<groupExpression><![CDATA[$F{absensisiswa_keterangan}]]></groupExpression>
+	</group>
+	<group name="absensisiswa_Tanggal">
+		<groupExpression><![CDATA[$F{absensisiswa_Tanggal}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="124" y="0" width="332" height="47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="24"/>
+				</textElement>
+				<text><![CDATA[Sekolah Menengah Kejuruan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="33" width="332" height="44"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Serif" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Agri Insani]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="73" width="478" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="10"/>
+				</textElement>
+				<text><![CDATA[Jalan Raya Cibanteng Proyek, Desa Cihideung, RT. 04/ 03 Kec. Ciampea Kab. Bogor, Kode Pos : 16620]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="92" width="542" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="96" width="542" height="1"/>
+				<graphicElement>
+					<pen lineWidth="1.25"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="24" y="7" width="66" height="67"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Conite\\Documents\\NetBeansProjects\\AbsensiSekolah\\Logo_SMK_AgriInsani.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement x="369" y="70" width="40" height="22"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12"/>
+				</textElement>
+				<text><![CDATA[Bulan : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="17" width="332" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="16" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Laporan Absensi Bulanan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="409" y="70" width="133" height="22"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{intBulanMP}.intValue()==1?"Januari":
+$P{intBulanMP}.intValue()==2?"Februari":
+$P{intBulanMP}.intValue()==3?"Maret":
+$P{intBulanMP}.intValue()==4?"April":
+$P{intBulanMP}.intValue()==5?"Mei":
+$P{intBulanMP}.intValue()==6?"Juni":
+$P{intBulanMP}.intValue()==7?"Juli":
+$P{intBulanMP}.intValue()==8?"Agustus":
+$P{intBulanMP}.intValue()==9?"September":
+$P{intBulanMP}.intValue()==10?"Oktober":
+$P{intBulanMP}.intValue()==11?"November":"Desember"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="402" splitType="Stretch">
+			<componentElement>
+				<reportElement key="table 2" style="table 2" x="24" y="154" width="518" height="50" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DSAbsensiSiswa">
+						<datasetParameter name="BulanP1">
+							<datasetParameterExpression><![CDATA[$P{intBulanMP}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="147">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="147" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nama]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="147" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{absensisiswa_Nama}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="116">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="116" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Kelas/ Jurusan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="116" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{absensisiswa_KelJur}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="111">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="111" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Keterangan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="111" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{absensisiswa_keterangan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="125">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="125" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Tanggal]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="d/M/yyyy">
+								<reportElement x="0" y="0" width="125" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.util.Date"><![CDATA[$F{absensisiswa_Tanggal}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table 2" style="table 2" positionType="Float" x="24" y="55" width="518" height="50" isRemoveLineWhenBlank="true"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="DataAbsensiGuru">
+						<datasetParameter name="BulanP2">
+							<datasetParameterExpression><![CDATA[$P{intBulanMP}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:column width="147">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="147" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Nama]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="147" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{absensistaff_Nama}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="116">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="116" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Jabatan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="116" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{absensistaff_Jabatan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="111">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="111" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Keterangan]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="111" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.lang.String"><![CDATA[$F{absensistaff_keterangan}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="125">
+						<jr:columnHeader style="table 2_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="125" height="30"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif" size="12" isBold="true"/>
+								</textElement>
+								<text><![CDATA[Tanggal]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:detailCell style="table 2_TD" height="20" rowSpan="1">
+							<textField pattern="dd/MM/yy">
+								<reportElement x="0" y="0" width="125" height="20"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Serif"/>
+								</textElement>
+								<textFieldExpression class="java.util.Date"><![CDATA[$F{absensistaff_Tanggal}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<staticText>
+				<reportElement x="124" y="34" width="332" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Absensi Guru/ Staff]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="124" y="133" width="332" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Serif" size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Absensi Siswa]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>
